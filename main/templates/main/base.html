@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Django Site{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Django Site</h1>
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/about/">About</a>
+        </nav>
+    </header>
+    <hr>
+
+    {% block content %}
+    {% endblock %}
+
+    <hr>
+    <footer>
+        <p>&copy; 2025 Austin Jeru D. Amascual</p>
+    </footer>
+</body>
+</html>
