@@ -1,28 +1,20 @@
 {% extends "base.html" %}
-
-{% block title %}{{ announcement.title }}{% endblock %}
-
 {% block content %}
-<h1>{{ announcement.title }}</h1>
-<p id="content">
-    {{ announcement.content|slice:":100" }}...
-    <span id="more" style="display:none;">
-        {{ announcement.content|slice:"100:" }}
-    </span>
-</p>
-<button onclick="toggleReadMore()">Read more</button>
+<h2>{{ announcement.title }}</h2>
+<p id="more">{{ announcement.content }}</p>
+<button onclick="toggleText()">Read more</button>
 
 <script>
-function toggleReadMore() {
-    let more = document.getElementById("more");
-    let btn = event.target;
-    if (more.style.display === "none") {
-        more.style.display = "inline";
-        btn.innerText = "Show less";
-    } else {
-        more.style.display = "none";
-        btn.innerText = "Read more";
-    }
+function toggleText() {
+  let p = document.getElementById("more");
+  let btn = event.target;
+  if (btn.innerText === "Read more") {
+    p.style.whiteSpace = "normal";
+    btn.innerText = "Show less";
+  } else {
+    p.style.whiteSpace = "nowrap";
+    btn.innerText = "Read more";
+  }
 }
 </script>
 {% endblock %}

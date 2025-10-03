@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}My Site{% endblock %}</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        nav { margin-bottom: 20px; }
-        nav a { margin-right: 15px; text-decoration: none; color: blue; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Django Site</title>
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/announcements/">Announcements</a>
-    </nav>
-
-    {% block content %}
-    {% endblock %}
+  <nav>
+    <a href="/">Home</a> |
+    <a href="/announcements/">Announcements</a>
+  </nav>
+  <hr>
+  {% block content %}{% endblock %}
 </body>
 </html>
