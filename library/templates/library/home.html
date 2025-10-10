@@ -4,17 +4,21 @@
     <title>Library</title>
 </head>
 <body>
-    <h1>?? Library Books</h1>
+    <h1>📚 Library Books</h1>
     <ul>
         {% for book in books %}
-        <li><strong>{{ book.title }}</strong> by {{ book.author.name }}</li>
+            <li><strong>{{ book.title }}</strong> by {{ book.author.name }} ({{ book.published }})</li>
+        {% empty %}
+            <li>No books found.</li>
         {% endfor %}
     </ul>
 
-    <h2>?? Categories</h2>
+    <h2>📂 Categories</h2>
     <ul>
         {% for category in categories %}
-        <li>{{ category.name }}</li>
+            <li>{{ category.name }}</li>
+        {% empty %}
+            <li>No categories found.</li>
         {% endfor %}
     </ul>
 </body>
