@@ -8,58 +8,67 @@
     <link rel="stylesheet" href="{% static 'library/style.css' %}">
 </head>
 <body>
-    <header>
-        <h1>📚 Library Dashboard</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/admin/">Admin</a>
-        </nav>
-    </header>
+    <div class="sidebar">
+        <h2>📚 Library Admin</h2>
+        <ul>
+            <li><a href="/">🏠 Home</a></li>
+            <li><a href="/admin/">⚙️ Admin Panel</a></li>
+        </ul>
+    </div>
 
-    <main>
-        <div class="container">
-            <section class="card">
+    <div class="main">
+        <header>
+            <h1>Library Overview</h1>
+        </header>
+
+        <section class="grid">
+            <div class="card">
                 <h2>📖 Books</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Categories</th>
-                            <th>Published</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for book in books %}
-                        <tr>
-                            <td>{{ book.title }}</td>
-                            <td>{{ book.author.name }}</td>
-                            <td>
-                                {% for cat in book.categories.all %}
-                                    {{ cat.name }}{% if not forloop.last %}, {% endif %}
-                                {% endfor %}
-                            </td>
-                            <td>{{ book.published }}</td>
-                        </tr>
-                        {% empty %}
-                        <tr><td colspan="4">No books found</td></tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </section>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Categories</th>
+                                <th>Published</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for book in books %}
+                            <tr>
+                                <td>{{ book.title }}</td>
+                                <td>{{ book.author.name }}</td>
+                                <td>
+                                    {% for cat in book.categories.all %}
+                                        <span class="tag">{{ cat.name }}</span>
+                                    {% endfor %}
+                                </td>
+                                <td>{{ book.published }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="4">No books found</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-            <section class="card">
+            <div class="card">
                 <h2>🏷️ Categories</h2>
-                <ul>
+                <div class="category-list">
                     {% for cat in categories %}
-                        <li>{{ cat.name }}</li>
+                        <div class="category-item">{{ cat.name }}</div>
                     {% empty %}
-                        <li>No categories available</li>
+                        <p>No categories found</p>
                     {% endfor %}
-                </ul>
-            </section>
-        </div>
-    </main>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
 
     <footer>
         <p>© 2025 Library Management System</p>
