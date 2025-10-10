@@ -1,33 +1,68 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Library</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Dashboard</title>
     <link rel="stylesheet" href="{% static 'library/style.css' %}">
 </head>
 <body>
-    <h1>📚 Library Books and Categories</h1>
+    <header>
+        <h1>📚 Library Dashboard</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/admin/">Admin</a>
+        </nav>
+    </header>
 
-    <div class="section">
-        <h2>Books</h2>
-        <ul>
-        {% for book in books %}
-            <li><strong>{{ book.title }}</strong> by {{ book.author.name }} ({{ book.published }})</li>
-        {% endfor %}
-        </ul>
-    </div>
+    <main>
+        <div class="container">
+            <section class="card">
+                <h2>📖 Books</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Categories</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.author.name }}</td>
+                            <td>
+                                {% for cat in book.categories.all %}
+                                    {{ cat.name }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ book.published }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="4">No books found</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
 
-    <div class="section">
-        <h2>Categories</h2>
-        <ul>
-        {% for category in categories %}
-            <li>{{ category.name }}</li>
-        {% endfor %}
-        </ul>
-    </div>
+            <section class="card">
+                <h2>🏷️ Categories</h2>
+                <ul>
+                    {% for cat in categories %}
+                        <li>{{ cat.name }}</li>
+                    {% empty %}
+                        <li>No categories available</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+    </main>
 
-    <div class="footer">
-        <p>Made with 💙 using Django</p>
-    </div>
+    <footer>
+        <p>© 2025 Library Management System</p>
+    </footer>
 </body>
 </html>
