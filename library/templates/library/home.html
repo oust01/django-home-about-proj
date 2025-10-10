@@ -1,25 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Library</title>
+    <link rel="stylesheet" href="{% static 'library/style.css' %}">
 </head>
 <body>
-    <h1>📚 Library Books</h1>
-    <ul>
+    <h1>📚 Library Books and Categories</h1>
+
+    <div class="section">
+        <h2>Books</h2>
+        <ul>
         {% for book in books %}
             <li><strong>{{ book.title }}</strong> by {{ book.author.name }} ({{ book.published }})</li>
-        {% empty %}
-            <li>No books found.</li>
         {% endfor %}
-    </ul>
+        </ul>
+    </div>
 
-    <h2>📂 Categories</h2>
-    <ul>
+    <div class="section">
+        <h2>Categories</h2>
+        <ul>
         {% for category in categories %}
             <li>{{ category.name }}</li>
-        {% empty %}
-            <li>No categories found.</li>
         {% endfor %}
-    </ul>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>Made with 💙 using Django</p>
+    </div>
 </body>
 </html>
