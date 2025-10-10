@@ -42,6 +42,10 @@ INSTALLED_APPS = [
      'library'
 
 ]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "library" / "static",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
